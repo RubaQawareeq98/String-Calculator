@@ -8,7 +8,7 @@ let Add input =
             if input.StartsWith("//") then
                 let line = input.IndexOf("\\n")
                 let delimiter = input.Substring(2,line - 2)
-                let numbers = input.Substring(5)
+                let numbers = input.Substring(line + 2)
                 delimiter, numbers
             else
                 ",", input  
