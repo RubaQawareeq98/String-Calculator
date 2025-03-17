@@ -19,7 +19,8 @@ let Add input =
         
         if (negativeNums.Length > 0) then
             failwith("Negative numbers not valid")
-        intNumbers |> Array.sum
+        let numbersAllowed = intNumbers |> Array.filter(fun n -> n < 1000)
+        numbersAllowed |> Array.sum
 
 
 printfn "Enter your string input"
