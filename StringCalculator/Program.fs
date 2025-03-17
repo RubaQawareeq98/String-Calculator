@@ -7,18 +7,19 @@ let Add input =
         let delimiter, numbers =
             if input.StartsWith("//") then
                 let line = input.IndexOf("\\n")
-                let delimiter = input.Substring(2,line - 2)
+                let delimiter = input.Substring(2, line - 2)
                 let numbers = input.Substring(line + 2)
                 delimiter, numbers
             else
                 ",", input  
 
-        numbers.Split([| ","; "\\n"; delimiter |], StringSplitOptions.None)
-        |> Array.map int
-        |> Array.sum
-
-
-  
+        let numbersPart = numbers.Split([| ","; "\\n"; delimiter |], StringSplitOptions.None)
+        let intNumbers = numbersPart |> Array.map int
+        let negativeNums = intNumbers |> Array.filter (fun n -> n < 0)
+        
+        if (negativeNums.Length > 0) then
+            failwith("Negative numbers not valid")
+        intNumbers |> Array.sum
 
 
 printfn "Enter your string input"
