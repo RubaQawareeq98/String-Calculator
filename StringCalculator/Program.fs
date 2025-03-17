@@ -18,7 +18,8 @@ let Add input =
         let negativeNums = intNumbers |> Array.filter (fun n -> n < 0)
         
         if (negativeNums.Length > 0) then
-            failwith("Negative numbers not valid")
+            let negativeStr = String.Join(", ", negativeNums)
+            failwith $"Negative numbers not allowed: {negativeStr}"
         intNumbers |> Array.sum
 
 
